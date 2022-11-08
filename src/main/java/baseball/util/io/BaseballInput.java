@@ -1,5 +1,6 @@
 package baseball.util.io;
 
+import baseball.validation.Validator;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -7,9 +8,13 @@ import java.util.stream.Collectors;
 
 public class BaseballInput {
 
-    public static List<Integer> gamePlay() {
+    public static List<Integer> gamePlay(final Validator<List<Integer>> validator) {
         System.out.print("숫자를 입력해주세요 : ");
-        return inputNumbers();
+        List<Integer> inputNumbers = inputNumbers();
+        if (!validator.validate(inputNumbers)) {
+            throw new IllegalArgumentException();
+        }
+        return inputNumbers;
     }
 
     public static boolean gameRestart() {
@@ -25,7 +30,7 @@ public class BaseballInput {
     }
 
     private static List<Integer> inputNumbers() {
-        return Arrays.stream(Console.readLine().split(""))
-            .map(Integer::valueOf).collect(Collectors.toList());
+        return Arrays.stream(Console.readLine().split("")).map(Integer::valueOf)
+            .collect(Collectors.toList());
     }
 }

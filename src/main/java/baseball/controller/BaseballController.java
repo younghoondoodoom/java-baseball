@@ -30,10 +30,7 @@ public class BaseballController {
     public void playOneCycle() {
         List<Integer> goal = createGoal();
         while (true) {
-            List<Integer> inputNumbers = BaseballInput.gamePlay();
-            if (!validator.validate(inputNumbers)) {
-                throw new IllegalArgumentException();
-            }
+            List<Integer> inputNumbers = BaseballInput.gamePlay(validator);
             Baseball result = baseballService.judge(inputNumbers, goal);
             BaseballOutput.printResult(result);
 
