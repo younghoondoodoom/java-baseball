@@ -7,7 +7,7 @@ public class BaseballInputValidator implements Validator<List<Integer>> {
     private static final int SIZE = 3;
 
     @Override
-    public boolean validate(List<Integer> target) {
+    public boolean validate(final List<Integer> target) {
         return validateSize(target) && validateRange(target, 1, 9) && validateDup(target);
     }
 

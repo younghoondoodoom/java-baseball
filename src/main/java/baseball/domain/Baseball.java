@@ -33,7 +33,7 @@ public class Baseball {
         }
     }
 
-    private String toUnitExpression(int number, String unit) {
+    private String toUnitExpression(final int number, final String unit) {
         return number + unit;
     }
 

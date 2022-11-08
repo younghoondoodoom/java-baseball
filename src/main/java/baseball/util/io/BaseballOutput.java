@@ -8,7 +8,7 @@ public class BaseballOutput {
         System.out.println("숫자 야구 게임을 시작합니다.");
     }
 
-    public static void printResult(Baseball baseball) {
+    public static void printResult(final Baseball baseball) {
         System.out.println(baseball.toString());
     }
 
