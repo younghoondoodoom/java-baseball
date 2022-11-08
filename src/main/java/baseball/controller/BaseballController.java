@@ -1,6 +1,9 @@
 package baseball.controller;
 
+import baseball.domain.Baseball;
 import baseball.service.BaseballService;
+import baseball.util.io.BaseballInput;
+import baseball.util.io.BaseballOutput;
 import baseball.validation.Validator;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -17,6 +20,30 @@ public class BaseballController {
         this.validator = validator;
     }
 
+    public void play() {
+        BaseballOutput.printInit();
+        do {
+            playOneCycle();
+        } while (BaseballInput.gameRestart());
+    }
+
+    public void playOneCycle() {
+        List<Integer> goal = createGoal();
+        while (true) {
+            List<Integer> inputNumbers = BaseballInput.gamePlay();
+            if (!validator.validate(inputNumbers)) {
+                throw new IllegalArgumentException();
+            }
+            Baseball result = baseballService.judge(inputNumbers, goal);
+            BaseballOutput.printResult(result);
+
+            if (result.getStrike() == 3) {
+                BaseballOutput.printSuccess();
+                break;
+            }
+        }
+
+    }
 
     private List<Integer> createGoal() {
         List<Integer> goal = new ArrayList<>();
