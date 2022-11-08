@@ -10,8 +10,8 @@ public class BaseballServiceImpl implements BaseballService {
         if (numbers.size() != goal.size()) {
             throw new IllegalArgumentException();
         }
-        int strikeCount = countStrike(numbers, goal);
-        int ballCount = countBall(numbers, goal, strikeCount);
+        final int strikeCount = countStrike(numbers, goal);
+        final int ballCount = countBall(numbers, goal, strikeCount);
         return new Baseball(strikeCount, ballCount);
     }
 

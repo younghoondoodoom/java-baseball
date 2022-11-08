@@ -14,7 +14,9 @@ public class BaseballController {
 
     private final BaseballService baseballService;
     private final Validator<List<Integer>> validator;
-
+    private static final int INPUT_SIZE = 3;
+    private static final int MIN = 1;
+    private static final int MAX = 9;
     public BaseballController(BaseballService baseballService, Validator<List<Integer>> validator) {
         this.baseballService = baseballService;
         this.validator = validator;
@@ -34,7 +36,7 @@ public class BaseballController {
             Baseball result = baseballService.judge(inputNumbers, goal);
             BaseballOutput.printResult(result);
 
-            if (result.getStrike() == 3) {
+            if (result.getStrike() == INPUT_SIZE) {
                 BaseballOutput.printSuccess();
                 break;
             }
@@ -44,8 +46,8 @@ public class BaseballController {
 
     private List<Integer> createGoal() {
         List<Integer> goal = new ArrayList<>();
-        while (goal.size() < 3) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
+        while (goal.size() < INPUT_SIZE) {
+            int randomNumber = Randoms.pickNumberInRange(MIN, MAX);
             if (!goal.contains(randomNumber)) {
                 goal.add(randomNumber);
             }

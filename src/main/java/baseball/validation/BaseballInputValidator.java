@@ -5,10 +5,12 @@ import java.util.List;
 public class BaseballInputValidator implements Validator<List<Integer>> {
 
     private static final int SIZE = 3;
+    private static final int MIN = 1;
+    private static final int MAX = 9;
 
     @Override
     public boolean validate(final List<Integer> target) {
-        return validateSize(target) && validateRange(target, 1, 9) && validateDup(target);
+        return validateSize(target) && validateRange(target, MIN, MAX) && validateDup(target);
     }
 
     private boolean validateSize(final List<Integer> target) {
